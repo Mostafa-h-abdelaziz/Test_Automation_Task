@@ -1,0 +1,26 @@
+Index: src/main/java/utilies/MethodsHandles.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package utilies;\r\n\r\nimport org.openqa.selenium.By;\r\nimport org.openqa.selenium.Keys;\r\nimport org.openqa.selenium.WebDriver;\r\nimport org.openqa.selenium.WebElement;\r\nimport org.openqa.selenium.support.ui.ExpectedConditions;\r\nimport org.openqa.selenium.support.ui.WebDriverWait;\r\n\r\nimport java.time.Duration;\r\n\r\npublic class MethodsHandles {\r\n\r\n    protected WebDriver driver;\r\n    WebDriverWait wait;\r\n\r\n    public MethodsHandles(WebDriver driver) {\r\n        this.driver=driver;\r\n    }\r\n\r\n\r\n    protected WebElement webElement(By locator){\r\n        return driver.findElement(locator);\r\n    }\r\n\r\n    public String getElementText(WebElement element){\r\n\r\n        return element.getText();\r\n    }\r\n\r\n    //Wait\r\n    protected void explicitWait(By locator, int time){\r\n        wait = new WebDriverWait(driver, Duration.ofSeconds(time));\r\n        wait.until(ExpectedConditions.and(\r\n                ExpectedConditions.visibilityOf(webElement(locator)),\r\n                ExpectedConditions.presenceOfElementLocated(locator),\r\n                ExpectedConditions.visibilityOfElementLocated(locator),\r\n                ExpectedConditions.elementToBeClickable(locator)\r\n        ));\r\n    }\r\n\r\n    // Click Function\r\n    protected void click(By locator,int time){\r\n\r\n        explicitWait(locator,time);\r\n\r\n        webElement(locator).click();\r\n    }\r\n\r\n    // Send Keys Function\r\n    protected void sendKeys(By locator,int time,String text){\r\n\r\n        explicitWait(locator,time);\r\n   // scrollIntoView(driver,webElement(locator));\r\n        webElement(locator).sendKeys(text);\r\n    }\r\n\r\n    public void EnterTextToElement(WebElement element, String text){\r\n\r\n        wait.until(ExpectedConditions.visibilityOf(element));\r\n        element.sendKeys(text, Keys.ENTER);\r\n    }\r\n\r\n}\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/utilies/MethodsHandles.java b/src/main/java/utilies/MethodsHandles.java
+--- a/src/main/java/utilies/MethodsHandles.java	(revision 9a09a64c922b806d0ec8657b2797bf130b23ac2d)
++++ b/src/main/java/utilies/MethodsHandles.java	(date 1731707167033)
+@@ -1,5 +1,6 @@
+ package utilies;
+ 
++import dev.failsafe.internal.util.Durations;
+ import org.openqa.selenium.By;
+ import org.openqa.selenium.Keys;
+ import org.openqa.selenium.WebDriver;
+@@ -30,7 +31,7 @@
+ 
+     //Wait
+     protected void explicitWait(By locator, int time){
+-        wait = new WebDriverWait(driver, Duration.ofSeconds(time));
++        wait = new WebDriverWait(driver, Durations.ofSeconds(time));
+         wait.until(ExpectedConditions.and(
+                 ExpectedConditions.visibilityOf(webElement(locator)),
+                 ExpectedConditions.presenceOfElementLocated(locator),

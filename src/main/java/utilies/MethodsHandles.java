@@ -56,6 +56,7 @@ public class MethodsHandles {
         webElement(locator).sendKeys(text);
     }
 
+
     public void EnterTextToElement(WebElement element, String text){
 
         wait.until(ExpectedConditions.visibilityOf(element));

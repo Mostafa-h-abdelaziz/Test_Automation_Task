@@ -31,7 +31,7 @@ public class MethodsHandles {
 
     //Wait
     protected void explicitWait(By locator, int time){
-        wait = new WebDriverWait(driver, Durations.ofSeconds(time));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(time));
         wait.until(ExpectedConditions.and(
                 ExpectedConditions.visibilityOf(webElement(locator)),
                 ExpectedConditions.presenceOfElementLocated(locator),
